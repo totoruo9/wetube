@@ -1,0 +1,26 @@
+{
+  "name": "wetube",
+  "version": "1.0.0",
+  "description": "Youtube clone code",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/totoruo9/wetube.git"
+  },
+  "scripts": {
+    "win": "node index.js"
+  },
+  "keywords": [
+    "youtube",
+    "clone",
+    "coding"
+  ],
+  "author": "jin-hyuk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/totoruo9/wetube/issues"
+  },
+  "homepage": "https://github.com/totoruo9/wetube#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
