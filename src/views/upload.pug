@@ -1,0 +1,20 @@
+extends base.pug
+
+block content
+    h2=pageTitle
+
+    form(method='post')
+        label(for="title") 비디오 제목
+        input(name="title", id="title", type="text", placeholder="Title", required)
+        label(for="rating") 평점
+        input(name="rating", id="rating", type="number", max=5, min=1, required)
+        label(for="comment") 댓글수
+        input(name="comment", id="comment", type="number", value="0", min=0, required)
+        label(for="createAt") 등록시간
+        input(name="createAt", id="createAt", type="text", value="2 minutes age", required)
+        label(for="views") 방문자수
+        input(name="views", id="views", type="number", value="0", required)
+        p 아이디 #{id}
+        input(name="id", id="id", type="number", value=`${id}`, required)
+        
+        input(type="submit", value="Upload")
