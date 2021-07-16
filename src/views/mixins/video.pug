@@ -1,6 +1,6 @@
 mixin video(info)
     div 
-        h4=info.title
+        a(href=`/videos/${info.id}`)=info.title
         ul
             li #{info.rating}/5
             li #{info.comment}
