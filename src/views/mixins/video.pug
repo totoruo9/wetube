@@ -1,8 +1,6 @@
 mixin video(info)
     div 
         a(href=`/videos/${info.id}`)=info.title
-        ul
-            li #{info.rating}/5
-            li #{info.comment}
-            li Posted #{info.createAt}
-            li #{info.views} views
+    p=info.description
+    small=info.createdAt
+    hr
