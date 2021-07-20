@@ -32,7 +32,10 @@ export const postJoin = async(req, res) => {
     return res.redirect("/login");
 };
 
-export const getLogin = (req, res) => res.render("login", {pageTitle:"Login"})
+export const getLogin = (req, res) => {
+    req.session.loginState = false;
+    return res.render("login", {pageTitle:"Login"});
+}
 export const postLogin = async(req, res) => {
     const {username, password} = req.body;
     const pageTitle = "Login"
@@ -45,8 +48,9 @@ export const postLogin = async(req, res) => {
     if(!ok){
         return res.status(400).render("login", {pageTitle, errorMessage: "Wrong password"});
     }
-    console.log("LOG USER IN! COMING SOON!");
-    res.redirect("/");
+    req.session.loginState = true;
+    req.session.user = user;
+    return res.redirect("/");
 }
 
 export const edit = (req, res) => res.send("edit");
