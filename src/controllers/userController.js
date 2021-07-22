@@ -133,5 +133,11 @@ export const logout = (req, res) => {
     return res.redirect("/");
 };
 
-export const edit = (req, res) => res.send("edit");
+export const getEdit = (req, res) => {
+    res.render("edit-profile", {pageTitle:"Edit profile"})
+};
+
+export const postEdit = (req, res) => {
+    return res.send("edit")
+};
 export const see = (req, res) => res.send("See");
