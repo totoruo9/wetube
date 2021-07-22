@@ -137,7 +137,33 @@ export const getEdit = (req, res) => {
     res.render("edit-profile", {pageTitle:"Edit profile"})
 };
 
-export const postEdit = (req, res) => {
-    return res.send("edit")
+export const postEdit = async(req, res) => {
+    const{
+            session: {
+                user: {_id}
+            },
+            body: {name, email, username, location}
+        } = req;
+
+    const checkUserId = _id;
+    const findEmail = await User.findOne({email});
+    if(findEmail) {
+        const checkEmailID = String(findEmail._id);
+        if(checkEmailID !== checkUserId){
+            return res.status(400).render("edit-profile", {pageTitle:"Edit profile", errorMessage:"This Email is alreay used"});
+        };
+    };
+
+    const findUsername = await User.findOne({username});
+    if(findUsername){
+        const checkUsernameId = String(findUsername._id);
+        if(checkUsernameId !== checkUserId){
+            return res.status(400).render("edit-profile", {pageTitle:"Edit profile", errorMessage:"This Username is alreay used"});
+        };
+    };
+    
+    const updatedUser = await User.findByIdAndUpdate(_id, {name, email, username, location}, {new: true});
+    req.session.user = updatedUser;
+    return res.redirect("/users/edit");
 };
 export const see = (req, res) => res.send("See");
