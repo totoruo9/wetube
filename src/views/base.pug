@@ -10,22 +10,6 @@ html(lang="ko")
                 ul 
                     li
                         a(href="/") Home
-<<<<<<< HEAD
-                    if loggedIn
-                        li
-                            a(href="/logout") Logout
-                        li
-                            a(href="/my-profile") #{loggedInUser.name}의 Profile
-                    else
-                        li
-                            a(href="/join") Join
-                        li
-                            a(href="/login") Login
-                    li
-                        a(href="/search") Search
-                    li
-                        a(href="/videos/upload") Upload Video
-=======
                     if !loginState
                         li 
                             a(href="/login") Login
@@ -41,7 +25,6 @@ html(lang="ko")
                     li
                         a(href="/search") Search
                     
->>>>>>> 001e6fd51c91152bbd413423af1b2133418c824f
         main
             block content
     include partials/footer.pug

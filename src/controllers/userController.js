@@ -47,16 +47,6 @@ export const postLogin = async(req, res) => {
 
     const ok = await bcrypt.compare(password, user.password);
     if(!ok){
-<<<<<<< HEAD
-        return res.status(400).render("login", {
-            pageTitle,
-            errorMessage: "Wrong password"
-        });
-    }
-    req.session.loggedIn = true;
-    req.session.user = user;
-    res.redirect("/");
-=======
         return res.status(400).render("users/login", {pageTitle, errorMessage: "Wrong password"});
     }
     req.session.loginState = true;
@@ -190,7 +180,7 @@ export const getChangePassword = async(req, res) => {
     } = req;
 
     if(newPassword !== newPasswordConfirmation){
-        return res.status(400).render("users/change-password", {pageTitle:"Change Password", errorMessage:"The password does not match the confirmation")};
+        return res.status(400).render("users/change-password", {pageTitle:"Change Password", errorMessage:"The password does not match the confirmation"});
     }
 
     return res.render("users/change-password", {pageTitle:"Change Password"});
@@ -198,7 +188,6 @@ export const getChangePassword = async(req, res) => {
 
 export const postChangePassword = (req, res) => {
     return res.redirect("/");
->>>>>>> 001e6fd51c91152bbd413423af1b2133418c824f
 }
 
 
