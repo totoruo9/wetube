@@ -1,4 +1,8 @@
 extends ../base
+include ../mixins/video
 
 block content 
-    h1 #{user.name}
+    each item in videos 
+        +video(item)
+    else 
+        li Sorry nothing found.
