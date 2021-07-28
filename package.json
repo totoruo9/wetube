@@ -7,8 +7,8 @@
     "url": "git+https://github.com/totoruo9/wetube.git"
   },
   "scripts": {
-    "dev": "nodemon --exec babel-node src/init.js",
-    "assets": "webpack --config webpack.config.js"
+    "dev:server": "nodemon",
+    "dev:assets": "webpack"
   },
   "keywords": [
     "youtube",
@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/totoruo9/wetube#readme",
   "dependencies": {
+    "assets": "^3.0.1",
     "bcrypt": "^5.0.1",
     "connect-mongo": "^4.4.1",
     "dotenv": "^10.0.0",
