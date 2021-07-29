@@ -1,0 +1,35 @@
+header 
+    a(href="/").header__logo Dnf'L
+    nav
+        ul.lnb
+            li
+                a(href="/") Home
+            if !loginState
+                li 
+                    a(href="/login") Login
+                li
+                    a(href="/join") Join
+            else 
+                li
+                    a(href="/videos/upload") Upload Video
+                li 
+                    a(href=`/users/${user._id}`) My Profile
+                li 
+                    a(href="/users/edit") Edit Profile
+                li 
+                    a(href="/users/logout") Logout
+            li
+                a(href="/search") Search
+        ul.gnb
+            li
+                a(href="/") Schedule
+            li
+                a(href="/") News Letter
+            li
+                a(href="/") Writing
+            li
+                a(href="/") Community
+            li
+                a(href="/") Inspiration
+            li
+                a(href="/") About Us

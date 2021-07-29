@@ -1,7 +1,196 @@
 /*!**********************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/client/scss/styles.scss ***!
   \**********************************************************************************************************************/
+@import url(https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap);
+/*!**************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/client/scss/styles.scss (1) ***!
+  \**************************************************************************************************************************/
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
 body {
-  background-color: aliceblue;
-  color: skyblue;
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+@font-face {
+  font-family: "InfinitySans-BoldA1";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-BoldA1.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "SDSwaggerTTF";
+  src: url(../1341dc43a8eec9bad518.woff) format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+header {
+  padding: 25px 40px;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  font-family: "SDSwaggerTTF";
+  color: #fff;
+}
+header .header__logo {
+  font-size: 52px;
+}
+header nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+header nav ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header nav .gnb {
+  margin-top: 16px;
+}
+header nav .gnb li {
+  font-size: 20px;
+  margin-left: 32px;
+}
+header nav .gnb li:first-child {
+  margin-left: 0;
+}
+header nav .lnb {
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.3);
+  width: 240px;
+  height: 28px;
+  border-radius: 12px;
+}
+header nav .lnb li {
+  font-size: 16px;
+  margin-left: 24px;
+}
+header nav .lnb li:first-child {
+  margin-left: 0;
+}
+
+.home__banner {
+  width: 100%;
+  height: 450px;
+  min-height: 680px;
+  background: url(../4ad6c5ba476e0d8a8208.png) no-repeat center center;
+  background-size: cover;
+  position: relative;
+}
+.home__banner #main__title {
+  font-size: 96px;
+  font-family: "SDSwaggerTTF";
+  color: #fff;
+  line-height: 118px;
+  position: absolute;
+  bottom: -120px;
+  left: 120px;
+}
+.home__banner #main__title .outline__text {
+  color: #fff;
+  -webkit-text-stroke: 4px #0A00FF;
+}
+
+.main__study {
+  margin-top: 250px;
+  background: url(../f54f7f4d5f7d6a3bc8b1.png) no-repeat center center;
+  background-size: cover;
+  font-family: "SDSwaggerTTF";
+  font-size: 40px;
+}
+.main__study h3 {
+  padding: 12px 20px;
+  box-sizing: border-box;
+  background: #f7f7f7;
+  color: #0A00FF;
+  display: inline-block;
+  border-radius: 32px;
+}
+.main__study h3 span {
+  margin-left: 10px;
+  color: #1d2557;
+  font-size: 24px;
+}
+.main__study p {
+  margin: 40px 0;
+  line-height: 52px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+body {
+  font-family: "Nanum Gothic", sans-serif;
+  background: #fff;
+  color: #1d2557;
+}
+
+#container {
+  padding: 0 120px;
+}
+
+.btn {
+  font-family: "SDSwaggerTTF";
+  font-size: 32px;
+  color: #fff;
+  padding: 16px 32px;
+  background: #0A00FF;
+  border: 0;
+  border-radius: 10px;
 }
