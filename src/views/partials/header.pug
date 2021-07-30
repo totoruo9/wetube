@@ -1,0 +1,25 @@
+header 
+    h1 
+        a(href="/") 
+            i.fab.fa-youtube
+    nav
+        ul 
+            li
+                a(href="/") Home
+            if !loginState
+                li 
+                    a(href="/login") Login
+                li
+                    a(href="/join") Join
+            else 
+                li
+                    a(href="/videos/upload") Upload Video
+                li 
+                    a(href=`/users/${user._id}`) My Profile
+                li 
+                    a(href="/users/edit") Edit Profile
+                li 
+                    a(href="/users/logout") Logout
+            li
+                a(href="/search") Search
+            
