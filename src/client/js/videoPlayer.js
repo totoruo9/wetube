@@ -1,13 +1,17 @@
 const video = document.querySelector("video");
 const playBtn = document.querySelector("#play");
+const playBtnIcon = playBtn.querySelector("i");
 const muteBtn = document.querySelector("#mute");
+const muteBtnIcon = muteBtn.querySelector("i");
 const volumeRange = document.querySelector("#volume");
-const currentTime = document.querySelector("#currentTime");
+const currenTime = document.querySelector("#currenTime");
 const totalTime = document.querySelector("#totalTime");
 const timeline = document.querySelector("#timeline");
-const fullScreen = document.querySelector("#fullScreen");
+const fullScreenBtn = document.querySelector("#fullScreen");
+const fullScreenIcon = fullScreenBtn.querySelector("i");
 const videoContainer = document.querySelector("#videoContainer");
 const videoControls = document.querySelector("#videoControls");
+const videoCover = document.querySelector("#videoCover");
 
 let controlsTimeout = null;
 let controlsMovementTimeout = null;
@@ -21,7 +25,14 @@ const handlePlayClick = (e) => {
     }else{
         video.pause();
     }
-    playBtn.innerText = video.paused ? "Play" : "Pause";
+    
+    if(video.paused){
+        playBtnIcon.classList = "fas fa-play";
+        videoCover.style.background = "rgba(0,0,0,.5)";
+    }else{
+        playBtnIcon.classList = "fas fa-pause";
+        videoCover.style.background = "rgba(0,0,0,0)";
+    }
 };
 
 const handleMute = (e) => {
@@ -30,11 +41,13 @@ const handleMute = (e) => {
     }else{
         video.muted = true;
     }
-    muteBtn.innerText = video.muted ? "Unmute" : "Mute";
+    muteBtnIcon.classList = video.muted
+        ? "fas fa-volume-mute"
+        : "fas fa-volume-up";
     volumeRange.value = video.muted ? 0 : volumeValue;
 };
 
-const formatTime = (seconds) => new Date(seconds * 1000).toISOString().substr(11, 8);
+const formatTime = (seconds) => new Date(seconds * 1000).toISOString().substr(14, 5);
 
 const handleVolumeChange = (event) => {
     const {target: {value}} = event;
@@ -46,13 +59,13 @@ const handleVolumeChange = (event) => {
     video.volume = value;
 };
 
-const handleLoadedMetaData = () => {
+const handleLoadedMetadata = () => {
     totalTime.innerText = formatTime(Math.floor(video.duration));
     timeline.max = Math.floor(video.duration);
 };
 
 const handleTimeUpdate = () => {
-    currentTime.innerText = formatTime(Math.floor(video.currentTime));
+    currenTime.innerText = formatTime(Math.floor(video.currentTime));
     timeline.value = Math.floor(video.currentTime);
 };
 
@@ -65,10 +78,10 @@ const handleFullScreen = () => {
     const fullscreen = document.fullscreenElement;
     if(fullscreen){
         document.exitFullscreen();
-        fullScreen.innerText = "Enter Full Screen";
+        fullScreenIcon.classList = "fas fa-expand";
     }else{
         videoContainer.requestFullscreen();
-        fullScreen.innerText = "Exit Full Screen";
+        fullScreenIcon.classList = "fas fa-compress";
     };
 };
 
@@ -89,14 +102,25 @@ const handleMouseMove = () => {
 
 const handleMouseLeave = () => {
     controlsTimeout = setTimeout(hideControls, 3000);
-}
+};
+
+const handleSpaceUp = (event) => {
+    if(event.code === "Space"){
+        handlePlayClick();
+    } else if(event.code === "Enter"){
+        handleFullScreen();
+    }
+};
 
 playBtn.addEventListener("click", handlePlayClick);
 muteBtn.addEventListener("click", handleMute);
 volumeRange.addEventListener("input", handleVolumeChange);
-video.addEventListener("loadedmetadata", handleLoadedMetaData);
+video.addEventListener("loadeddata", handleLoadedMetadata);
 video.addEventListener("timeupdate", handleTimeUpdate);
+videoContainer.addEventListener("mousemove", handleMouseMove);
+videoContainer.addEventListener("mouseleave", handleMouseLeave);
 timeline.addEventListener("input", handleTimelineChange);
 fullScreen.addEventListener("click", handleFullScreen);
-video.addEventListener("mousemove", handleMouseMove);
-video.addEventListener("mouseleave", handleMouseLeave);
+videoCover.addEventListener("dblclick", handleFullScreen);
+videoCover.addEventListener("click", handlePlayClick);
+document.addEventListener("keyup", handleSpaceUp);
