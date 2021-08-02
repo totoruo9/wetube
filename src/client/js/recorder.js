@@ -1,11 +1,23 @@
+import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
+import fetch from "node-fetch";
+import {async} from "regenerator-runtime";
+
 const startBtn = document.querySelector("#startBtn");
 const video = document.querySelector("#preview");
+
 
 let stream;
 let recorder;
 let videoFile;
 
-const handleDownload = () => {
+const handleDownload = async() => {
+    const ffmpeg = createFFmpeg({log:true});
+    await ffmpeg.load();
+
+    ffmpeg.FS("writeFile", "recording.webm", await fetchFile(videoFile));
+
+    await ffmpeg.run("-i", "recording.webm", "-r", "60", "output.mp4");
+
     const a = document.createElement("a");
     a.href = videoFile;
     a.download = "MyRecording.webm";
@@ -26,7 +38,7 @@ const handleStart = () => {
     startBtn.removeEventListener("click", handleStart);
     startBtn.addEventListener("click", handleStop);
     recorder = new MediaRecorder(stream);
-    
+
     recorder.ondataavailable = (event) => {
         videoFile = URL.createObjectURL(event.data);
         video.srcObject = null;
@@ -40,7 +52,7 @@ const handleStart = () => {
 const init = async() => {
     stream = await navigator.mediaDevices.getUserMedia({
         audio:false,
-        video:true
+        video:{width: 300, height: 300}
     });
     video.srcObject = stream;
     video.play();
