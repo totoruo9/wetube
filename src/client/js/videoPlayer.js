@@ -27,6 +27,8 @@ const handleMute = (e) => {
     volumeRange.value = video.muted ? 0 : volumeValue;
 };
 
+const formatTime = (seconds) => new Date(seconds * 1000).toISOString().substr(11, 8);
+
 const handleVolumeChange = (event) => {
     const {target: {value}} = event;
     if(video.muted){
@@ -38,11 +40,11 @@ const handleVolumeChange = (event) => {
 };
 
 const handleLoadedMetaData = () => {
-    totalTime.innerText = Math.floor(video.duration);
+    totalTime.innerText = formatTime(Math.floor(video.duration));
 };
 
 const handleTimeUpdate = () => {
-    currentTime.innerText = Math.floor(video.currentTime);
+    currentTime.innerText = formatTime(Math.floor(video.currentTime));
 }
 
 playBtn.addEventListener("click", handlePlayClick);
