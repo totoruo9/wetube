@@ -8,6 +8,7 @@ export const home = async (req, res) => {
             .populate("owner");
         return res.render("home", { pageTitle: "Home", videos });
     } catch {
+        req.flash("error", "Not authorized");
         return res.status(404).redirect("404", {pageTitle: "Video not found"});
     }
     
@@ -46,6 +47,7 @@ export const postEdit = async(req, res) => {
     }
 
     if(String(video.owner) !== String(_id)){
+        req.flash("error", "You are not the owner of the video.");
         return res.status(403).redirect("/");
     }
     await Video.findByIdAndUpdate(id, {
@@ -70,7 +72,6 @@ export const postUpload = async (req, res) => {
         },
         files: {video, thumb}
     } = req;
-    console.log(thumb[0].path, thumb[0].destination, thumb[0].filename)
     try {
         const newVideo = await Video.create ({
             title,
