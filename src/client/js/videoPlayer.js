@@ -106,12 +106,22 @@ const handleMouseLeave = () => {
     controlsTimeout = setTimeout(hideControls, 3000);
 };
 
-const handleSpaceUp = (event) => {
+const handleKeyEvent = (event) => {
     if(event.code === "Space"){
+        event.preventDefault();
         handlePlayClick();
     } else if(event.code === "Enter"){
+        event.preventDefault();
         handleFullScreen();
     }
+};
+
+const handleEnterVideo = (event) => {
+    document.addEventListener("keyup", handleKeyEvent);
+};
+
+const handleLeaveVideo = (event) => {
+    document.removeEventListener("keyup", handleKeyEvent);
 };
 
 const handleEnded = () => {
@@ -133,4 +143,5 @@ timeline.addEventListener("input", handleTimelineChange);
 fullScreen.addEventListener("click", handleFullScreen);
 videoCover.addEventListener("dblclick", handleFullScreen);
 videoCover.addEventListener("click", handlePlayClick);
-document.addEventListener("keyup", handleSpaceUp);
+videoCover.addEventListener("mouseover", handleEnterVideo);
+videoCover.addEventListener("mouseleave", handleLeaveVideo);
