@@ -7,6 +7,8 @@
     "url": "git+https://github.com/totoruo9/wetube.git"
   },
   "scripts": {
+    "start": "node build/init.js",
+    "build:server": "babel src -d build",
     "dev:server": "nodemon",
     "dev:assets": "webpack"
   },
@@ -41,7 +43,8 @@
     "sass-loader": "^12.1.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.6",
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.14.8",
     "@babel/node": "^7.14.7",
     "@babel/preset-env": "^7.14.7",
     "babel-loader": "^8.2.2",
