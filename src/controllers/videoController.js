@@ -159,3 +159,15 @@ export const createComment = async(req, res) => {
     video.save();
     return res.status(201).json({newCommentId: comment._id});
 }
+
+export const deleteComment = async(req, res) => {
+    const {body: {id}} = req;
+    const userId = req.session.user._id;
+    if(userId !== id){
+        req.flash("error", "You are not the owner of the comment.");
+        return res.sendStatus(404);
+    }
+    await Comment.findOneAndDelete({owner:id});
+
+    return res.end();
+}

@@ -1,13 +1,13 @@
+import fetch from "node-fetch";
+
 const videoContainer = document.getElementById("videoContainer");
 const form = document.getElementById("commentForm");
-
-let json;
+const deleteComment = document.querySelectorAll(".delete__comment");
 
 const addComment = (text, id) => {
     const videoComments = document.querySelector(".video__comments ul");
 
     const newComment = document.createElement("li");
-    newComment.dataset.id = id;
     newComment.className = "video__comment";
 
     const icon = document.createElement("i");
@@ -17,6 +17,7 @@ const addComment = (text, id) => {
     span.innerText = ` ${text}`;
 
     const span2 = document.createElement("span");
+    span2.dataset.id = id;
     span2.innerText = "❌"
     
     newComment.appendChild(icon);
@@ -49,6 +50,25 @@ const handleSubmit = async (event) => {
     };
 };
 
+const handleDeleteComment = async(event) => {
+    const id = event.target.dataset.id;
+    await fetch(`/api/videos/${id}/delete`,{
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({id}),
+    });
+    event.target.closest(".video__comment").remove();
+};
+
 if(form){
     form.addEventListener("submit", handleSubmit);
+};
+
+
+if(deleteComment){
+    deleteComment.forEach((item) => {
+        item.addEventListener("click", handleDeleteComment);
+    });
 };
