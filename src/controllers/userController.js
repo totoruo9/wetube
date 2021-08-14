@@ -163,9 +163,9 @@ export const postEdit = async(req, res) => {
             return res.status(400).render("users/edit-profile", {pageTitle:"Edit profile", errorMessage:"This Username is alreay used"});
         };
     };
-    
+    console.log(file);
     const updatedUser = await User.findByIdAndUpdate(_id, {
-        avatarUrl: file ? file.path : avatarUrl,
+        avatarUrl: file ? file.location : avatarUrl,
         name,
         email,
         username, 
